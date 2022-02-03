@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Enter New Movie";
+}
+@model Project5.Models.MovieLists;
+
+<h1>Enter New Movie</h1>
+<div>
+    <form method="post">
+        @*This helps us connect the different categories so it doesn't take up space and the user can pick an already made category*@
+        <label asp-for="CategoryId">Category: </label>
+        <select asp-for="CategoryId">
+            <option value="">Select a Category </option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select> <br />
+
+        <label asp-for="Title">Title: </label>
+        <input asp-for="Title" /> <br />
+        
+        <label asp-for="Year">Year: </label>
+        <input asp-for="Year" /> <br />
+        
+        <label asp-for="Director">Director: </label>
+        <input asp-for="Director" /> <br />
+        
+        <label asp-for="Rating">Rating: </label>
+        <select asp-for="Rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select>
+        <br />
+        
+        <label asp-for="Edited"></label>
+        <select asp-for="Edited">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+        <label asp-for="LentTo">Lent To: </label>
+        <input asp-for="LentTo" />
+        <br />
+        <label asp-for="Notes">Notes: </label>
+        <input asp-for="Notes" />
+        <br />
+
+        <button type="submit">Submit Movie</button>
+        @* This is to make sure all the validations are meant upon entry *@
+        <div asp-validation-summary="All"></div>
+
+    </form>
+</div>
